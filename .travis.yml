@@ -1,29 +1,26 @@
 sudo: required
 dist: trusty
-
 language: node_js
 node_js:
-  - '4.5'
-
+- '4.5'
 install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-  - sudo apt-get update -q
-  - sudo apt-get install -q google-chrome-stable
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key
+  add -
+- sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
+  main" >> /etc/apt/sources.list.d/google-chrome.list'
+- sudo apt-get update -q
+- sudo apt-get install -q google-chrome-stable
 before_script:
-  - npm install
-
+- npm install
 script:
-  - npm run test-single-run
-  - (npm start > /dev/null &) && (npm run protractor)
-
+- npm run test-single-run
+- (npm start > /dev/null &) && (npm run protractor)
 deploy:
   provider: heroku
   api_key:
-    secure: sLD36cVgsg8Vy7zYJbvAoqbuQuZPHWTrPDIn9J6CEKTA5D0D9Dnkn87BeXZICPIA+IsGuhlyThG7tMR59bfHa/I7u5lNVR/w/z6a6tPzBAo5ghNO/s+jOkNXT+2UxefAdtx9bn78YTboYFz3nUtOEz/GdczEL541Ov7y0CkZcCkIPnD5mK/mAexVcl64mhRhwLSLeoySNKoFrTPxlySXy5qmfRNSZxFP1MjYltvoxO7FWF0vS8nmSC4hVsB5VXqE3cOUeFKwPNl9cSKhONbcLOj3AZs0AwuZs7Sg/YqVB2n7KpfL+cym+TAkFHp1R8VmlxuXorWbYGqkAACYB8yqqCfNkghF+qqKQ1Xtxhq07UoSmGDzgoDI9llbnKnwPiyRgqzNYIkj0cFMwh2GwdIGbcO9AYcKDgOHKeAlhL1uSF3iei6su8c/SDu3tamwUcFDnq9PV0sMSiXAiDaPUApEqY7QL5N+3DEHahe1xfgQgjmZL4F65ujzmy+OBRlgUfWkoW828B71Z5RWI05v2huV9ezHvU0S3d3qlEbCsMGESKH3U00uwxOT1Nr/KUjk0Tlg3qkBed0/wP10M40X72Hy2dGGhmFx3GRnZzozMouStWIdg7GxO3FsiJtpT+fpVA8GTZKWs9awybjeCSd7hp1UdRCb7L9atoq4m4QEvX+lrig=
+    secure: K/X6KhD2LmTXjHO5iCy7E17sNz3HjilqRFZUKLLOvkEbQiWs8kOztOt9vu/OUU74SFQqcGJ5RlChfUx10hYeJc4WLiu/r63hBUDLLgBRmapmxpx9nQ/iExfIz0hgZHd9sS6Jrpsh6PM+77KSoXcQS0bN2ODIlDQiI+4NTEwn2QMpAmoZqnhVwKxMmI4DRwuxSnwjzwPcVHkzUb5ps4q3eYj8PfkISWkAu6oCbxFUCZzWGZ9Df8f7boMLWMo7du2kM07g8KKU/iSg5TjwMZZXkZvmik7Dlm9sgvY6v2OTWp8rFlJe31Dsc9H7RedSHZO/IAafIovj47J+db4zkU2Y55zRhF9p0k3MNuL6lzv+/GozlRY2VxRbbhc/mztKENobKU3RgHVtUD8hqRwHQB0iZgW7KHEgl7Ug1qHBIk7xe+o/VcEBf78Bko2DnvKAtdWJ2sj3mcUpwMhEqZzIg2Qb3Wl6NJx5hw5OpyYm35t5HjsRbLiC8lpNJ+SF1IvYcFLL+qqgv5DMDiClfOMq/9/CUfJ8wPOEUP99mClCkVm4Ap2zuPheKO+l8RxbUJeQ0ZsSRZYuyMkxeZnVu9QHRf7Y4jkNv47QlHARwhkj5x5HuUSrrfBtZs7VkCLG29j0gae2JW25StgRxMRA5iaqE6livSOyksPLA9Dz85dF0aHDKY8=
   app: ttqui
   on:
     repo: zachdicus/ttqui
